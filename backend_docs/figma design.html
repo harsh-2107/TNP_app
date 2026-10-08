@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8fafb; }
+.container { max-width: 1600px; margin: 0 auto; padding: 30px 20px; }
+.page-title { text-align: center; margin-bottom: 40px; }
+.page-title h1 { font-size: 32px; font-weight: 700; color: #1a3a52; margin-bottom: 10px; }
+.page-title p { color: #6b7280; font-size: 14px; }
+.pages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 30px; }
+.page-mockup { background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); overflow: hidden; border: 1px solid #e5e7eb; }
+.mockup-label { background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%); color: white; padding: 14px 18px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
+.phone-frame { width: 100%; aspect-ratio: 9/16; background: #ffffff; position: relative; display: flex; flex-direction: column; overflow: hidden; }
+.status-bar { background: #1a3a52; color: white; height: 28px; padding: 4px 14px; font-size: 10px; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
+
+/* Login Page */
+.login-screen { background: white; display: flex; flex-direction: column; }
+.login-header { background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%); color: white; padding: 50px 24px 30px; text-align: center; }
+.login-logo { font-size: 28px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
+.login-subtext { font-size: 12px; opacity: 0.95; font-weight: 500; }
+.login-form { padding: 32px 24px; flex: 1; display: flex; flex-direction: column; }
+.form-group { margin-bottom: 18px; }
+.form-label { display: block; font-size: 12px; font-weight: 700; color: #1f2937; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.4px; }
+.form-input { width: 100%; padding: 12px 14px; border: 1.5px solid #d1d5db; border-radius: 8px; font-size: 13px; background: #f9fafb; transition: all 0.3s; }
+.form-input:focus { outline: none; border-color: #0f766e; background: white; box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1); }
+.form-input::placeholder { color: #9ca3af; }
+.btn-signin { width: 100%; padding: 12px; background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%); color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; margin-top: 8px; transition: transform 0.2s; }
+.btn-signin:active { transform: scale(0.98); }
+.btn-google { width: 100%; padding: 12px; background: white; border: 1.5px solid #d1d5db; border-radius: 8px; color: #374151; font-size: 13px; font-weight: 700; cursor: pointer; margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.3s; }
+.btn-google:hover { background: #f9fafb; border-color: #0f766e; }
+.helper-text { font-size: 11px; color: #6b7280; margin-top: 16px; line-height: 1.6; }
+
+/* Home Page */
+.home-screen { display: flex; flex-direction: column; height: 100%; }
+.top-header { background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%); color: white; padding: 18px 18px 20px; }
+.greeting-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.greeting-text { font-size: 15px; font-weight: 700; }
+.header-icons { display: flex; gap: 10px; }
+.icon-button { background: rgba(255,255,255,0.15); border: none; color: white; width: 36px; height: 36px; border-radius: 8px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+.icon-button:hover { background: rgba(255,255,255,0.25); }
+.profile-summary { background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 10px; padding: 14px; margin: 14px 18px 0 18px; }
+.summary-row { display: flex; gap: 20px; }
+.summary-item { flex: 1; }
+.summary-label { font-size: 11px; color: #047857; font-weight: 600; }
+.summary-value { font-size: 16px; font-weight: 700; color: #065f46; margin-top: 4px; }
+.home-content { flex: 1; overflow-y: auto; padding: 18px; }
+.section-header { font-size: 12px; font-weight: 800; color: #0f766e; margin: 18px 0 12px 0; text-transform: uppercase; letter-spacing: 0.5px; }
+.job-card { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 14px; margin-bottom: 12px; transition: all 0.3s; }
+.job-card:hover { box-shadow: 0 2px 8px rgba(15, 118, 110, 0.12); }
+.job-title { font-size: 13px; font-weight: 700; color: #1f2937; }
+.job-company { font-size: 12px; color: #6b7280; margin-top: 4px; display: flex; align-items: center; gap: 4px; }
+.badge-eligible { display: inline-block; background: #d1fae5; color: #047857; padding: 4px 10px; border-radius: 6px; font-size: 10px; margin-top: 8px; font-weight: 700; }
+.bottom-nav { background: white; border-top: 1px solid #e5e7eb; display: flex; justify-content: space-around; padding: 12px 0; position: sticky; bottom: 0; }
+.nav-item { text-align: center; color: #9ca3af; font-size: 9px; cursor: pointer; transition: all 0.3s; padding: 8px 0; flex: 1; }
+.nav-item.active { color: #0f766e; }
+.nav-icon { font-size: 18px; margin-bottom: 4px; }
+
+/* Profile Page */
+.profile-screen { display: flex; flex-direction: column; height: 100%; }
+.profile-header { background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%); color: white; padding: 32px 24px 24px; text-align: center; }
+.profile-avatar { width: 70px; height: 70px; background: rgba(255,255,255,0.25); border-radius: 50%; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; font-size: 32px; }
+.profile-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.profile-email { font-size: 12px; opacity: 0.9; }
+.profile-content { flex: 1; overflow-y: auto; padding: 18px; }
+.profile-card { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+.profile-field-label { font-size: 10px; color: #6b7280; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
+.profile-field-value { font-size: 14px; color: #1f2937; font-weight: 700; margin-top: 6px; }
+.btn-edit { width: 100%; padding: 12px; background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%); color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; margin-top: 18px; cursor: pointer; }
+
+/* Notification Page */
+.notif-screen { display: flex; flex-direction: column; height: 100%; }
+.notif-header { background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%); color: white; padding: 18px; font-size: 15px; font-weight: 700; }
+.notif-list { flex: 1; overflow-y: auto; }
+.notif-card { border-bottom: 1px solid #e5e7eb; padding: 14px 16px; transition: background 0.2s; }
+.notif-card:hover { background: #f9fafb; }
+.notif-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.notif-title { font-size: 13px; font-weight: 700; color: #1f2937; }
+.notif-badge { background: #dc2626; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; }
+.notif-body { font-size: 12px; color: #6b7280; margin-top: 6px; line-height: 1.5; }
+.notif-time { font-size: 10px; color: #d1d5db; margin-top: 8px; }
+
+/* Resume Page */
+.resume-screen { display: flex; flex-direction: column; height: 100%; }
+.resume-header { background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%); color: white; padding: 18px; font-size: 15px; font-weight: 700; }
+.resume-content { flex: 1; overflow-y: auto; padding: 18px; }
+.upload-area { border: 2px dashed #0f766e; border-radius: 10px; padding: 28px 18px; text-align: center; margin-bottom: 18px; background: #f0fdf4; }
+.upload-icon { font-size: 32px; margin-bottom: 10px; color: #0f766e; }
+.upload-title { font-size: 13px; font-weight: 700; color: #1f2937; }
+.upload-hint { font-size: 11px; color: #6b7280; margin-top: 6px; }
+.btn-upload { width: 100%; padding: 12px; background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%); color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; margin-top: 12px; cursor: pointer; }
+.resume-type-card { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+.resume-type-title { font-size: 12px; font-weight: 700; color: #0f766e; display: flex; align-items: center; gap: 6px; }
+.resume-type-desc { font-size: 11px; color: #6b7280; margin-top: 6px; }
+.btn-view { width: 100%; padding: 8px; background: white; border: 1px solid #0f766e; color: #0f766e; border-radius: 6px; font-size: 11px; margin-top: 10px; font-weight: 700; cursor: pointer; }
+
+/* Add Resume Page */
+.form-screen { display: flex; flex-direction: column; height: 100%; }
+.form-header { background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%); color: white; padding: 18px; font-size: 15px; font-weight: 700; }
+.form-content { flex: 1; overflow-y: auto; padding: 18px; }
+.form-section { margin-bottom: 20px; }
+.form-section-title { font-size: 11px; font-weight: 800; color: #0f766e; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+.input-field { width: 100%; padding: 12px 14px; border: 1.5px solid #d1d5db; border-radius: 8px; font-size: 13px; background: #f9fafb; margin-bottom: 12px; font-family: inherit; }
+.input-field:focus { outline: none; border-color: #0f766e; background: white; box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1); }
+.input-field::placeholder { color: #9ca3af; }
+.textarea-field { width: 100%; padding: 12px 14px; border: 1.5px solid #d1d5db; border-radius: 8px; font-size: 13px; background: #f9fafb; font-family: inherit; min-height: 90px; resize: vertical; }
+.required-mark { color: #dc2626; font-weight: 700; }
+.checkbox-group { display: flex; gap: 8px; margin-bottom: 10px; }
+.checkbox-group input { width: 18px; height: 18px; cursor: pointer; }
+.checkbox-group label { font-size: 12px; color: #374151; cursor: pointer; font-weight: 500; }
+.btn-submit { width: 100%; padding: 12px; background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%); color: white; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; margin-top: 18px; margin-bottom: 18px; cursor: pointer; }
+
+.scrollable { overflow-y: auto; }
+.scrollable::-webkit-scrollbar { width: 5px; }
+.scrollable::-webkit-scrollbar-track { background: transparent; }
+.scrollable::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="page-title">
+    <h1>IIIT Nagpur Placement Cell</h1>
+    <p>Professional Student Interface Design System</p>
+  </div>
+
+  <div class="pages-grid">
+
+    <!-- Login Page -->
+    <div class="page-mockup">
+      <div class="mockup-label"><i class="fas fa-sign-in-alt"></i> LOGIN PAGE</div>
+      <div class="phone-frame">
+        <div class="status-bar"><span>9:41</span> <span>●●●●●</span></div>
+        <div class="login-screen scrollable">
+          <div class="login-header">
+            <div class="login-logo">IIIT Nagpur</div>
+            <div class="login-subtext">Training & Placement Cell</div>
+          </div>
+          <div class="login-form">
+            <p style="font-size: 12px; color: #6b7280; margin-bottom: 20px; font-weight: 500;">Sign in with your college credentials</p>
+            
+            <div class="form-group">
+              <label class="form-label">College Email ID</label>
+              <input type="email" class="form-input" placeholder="your.roll@iiitg.ac.in" />
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-input" placeholder="••••••••" />
+            </div>
+            
+            <button class="btn-signin">Sign In</button>
+            <button class="btn-google"><i class="fab fa-google"></i> Continue with Google</button>
+            
+            <p class="helper-text">Use your official college email ID for verification. Your profile data will be automatically fetched.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Home Page -->
+    <div class="page-mockup">
+      <div class="mockup-label"><i class="fas fa-home"></i> HOME PAGE</div>
+      <div class="phone-frame">
+        <div class="status-bar"><span>9:41</span> <span>●●●●●</span></div>
+        <div class="home-screen">
+          <div class="top-header">
+            <div class="greeting-row">
+              <div class="greeting-text">Hello, Aarav</div>
+              <div class="header-icons">
+                <button class="icon-button"><i class="fas fa-bell"></i></button>
+                <button class="icon-button"><i class="fas fa-user"></i></button>
+              </div>
+            </div>
+            <div class="profile-summary">
+              <div class="summary-row">
+                <div class="summary-item">
+                  <div class="summary-label">CGPA</div>
+                  <div class="summary-value">8.5</div>
+                </div>
+                <div class="summary-item">
+                  <div class="summary-label">Current Year</div>
+                  <div class="summary-value">3rd Year</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="home-content scrollable">
+            <div class="section-header"><i class="fas fa-briefcase"></i> Active Opportunities</div>
+            
+            <div class="job-card">
+              <div class="job-title">Software Development Engineer</div>
+              <div class="job-company"><i class="fas fa-building"></i> Google India · On-Campus</div>
+              <div class="badge-eligible"><i class="fas fa-check-circle"></i> Eligible</div>
+            </div>
+            
+            <div class="job-card">
+              <div class="job-title">Data Analyst</div>
+              <div class="job-company"><i class="fas fa-building"></i> Microsoft · Off-Campus</div>
+              <div class="badge-eligible"><i class="fas fa-check-circle"></i> Eligible</div>
+            </div>
+            
+            <div class="job-card">
+              <div class="job-title">Product Manager Intern</div>
+              <div class="job-company"><i class="fas fa-building"></i> Amazon · On-Campus</div>
+              <div class="badge-eligible"><i class="fas fa-check-circle"></i> Eligible</div>
+            </div>
+          </div>
+          
+          <div class="bottom-nav">
+            <div class="nav-item active"><div class="nav-icon"><i class="fas fa-home"></i></div>Home</div>
+            <div class="nav-item"><div class="nav-icon"><i class="fas fa-file-pdf"></i></div>Resume</div>
+            <div class="nav-item"><div class="nav-icon"><i class="fas fa-plus"></i></div>Add</div>
+            <div class="nav-item"><div class="nav-icon"><i class="fas fa-bell"></i></div>Notify</div>
+            <div class="nav-item"><div class="nav-icon"><i class="fas fa-user-circle"></i></div>Profile</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Page -->
+    <div class="page-mockup">
+      <div class="mockup-label"><i class="fas fa-user"></i> PROFILE PAGE</div>
+      <div class="phone-frame">
+        <div class="status-bar"><span>9:41</span> <span>●●●●●</span></div>
+        <div class="profile-screen">
+          <div class="profile-header">
+            <div class="profile-avatar"><i class="fas fa-user"></i></div>
+            <div class="profile-name">Aarav Sharma</div>
+            <div class="profile-email">aarav.21@iiitg.ac.in</div>
+          </div>
+          
+          <div class="profile-content scrollable">
+            <div class="profile-card">
+              <div class="profile-field-label">Roll Number</div>
+              <div class="profile-field-value">21AIML042</div>
+            </div>
+            
+            <div class="profile-card">
+              <div class="profile-field-label">Program</div>
+              <div class="profile-field-value">B.Tech in AI & ML</div>
+            </div>
+            
+            <div class="profile-card">
+              <div class="profile-field-label">Current Year</div>
+              <div class="profile-field-value">3rd Year</div>
+            </div>
+            
+            <div class="profile-card">
+              <div class="profile-field-label">CGPA</div>
+              <div class="profile-field-value">8.5</div>
+            </div>
+            
+            <div class="profile-card">
+              <div class="profile-field-label">Specialization</div>
+              <div class="profile-field-value">Machine Learning</div>
+            </div>
+            
+            <div class="profile-card">
+              <div class="profile-field-label">Contact Number</div>
+              <div class="profile-field-value">+91 98765 43210</div>
+            </div>
+            
+            <button class="btn-edit"><i class="fas fa-edit"></i> Edit Profile</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notifications Page -->
+    <div class="page-mockup">
+      <div class="mockup-label"><i class="fas fa-bell"></i> NOTIFICATIONS</div>
+      <div class="phone-frame">
+        <div class="status-bar"><span>9:41</span> <span>●●●●●</span></div>
+        <div class="notif-screen">
+          <div class="notif-header">Notifications</div>
+          
+          <div class="notif-list scrollable">
+            <div class="notif-card">
+              <div class="notif-top">
+                <div>
+                  <div class="notif-title">New Job Opening</div>
+                  <div class="notif-body">Google is hiring for Software Engineer role. Check your eligibility now.</div>
+                  <div class="notif-time">5 minutes ago</div>
+                </div>
+                <div class="notif-badge">1</div>
+              </div>
+            </div>
+            
+            <div class="notif-card">
+              <div class="notif-top">
+                <div>
+                  <div class="notif-title">Interview Scheduled</div>
+                  <div class="notif-body">Your interview with Microsoft is scheduled for December 15, 2024 at 2:00 PM.</div>
+                  <div class="notif-time">2 hours ago</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="notif-card">
+              <div class="notif-top">
+                <div>
+                  <div class="notif-title">Application Accepted</div>
+                  <div class="notif-body">Congratulations! Your application for the Microsoft Internship has been accepted.</div>
+                  <div class="notif-time">1 day ago</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="notif-card">
+              <div class="notif-top">
+                <div>
+                  <div class="notif-title">Resume Tips</div>
+                  <div class="notif-body">Tips to improve your resume for technical roles in software development.</div>
+                  <div class="notif-time">2 days ago</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upload Resume Page -->
+    <div class="page-mockup">
+      <div class="mockup-label"><i class="fas fa-cloud-upload-alt"></i> UPLOAD RESUME</div>
+      <div class="phone-frame">
+        <div class="status-bar"><span>9:41</span> <span>●●●●●</span></div>
+        <div class="resume-screen">
+          <div class="resume-header">Upload Resume</div>
+          
+          <div class="resume-content scrollable">
+            <div class="upload-area">
+              <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+              <div class="upload-title">Choose PDF to Upload</div>
+              <div class="upload-hint">Maximum 2MB · PDF files only</div>
+            </div>
+            <button class="btn-upload"><i class="fas fa-folder-open"></i> Browse Files</button>
+            
+            <div style="margin-top: 20px;">
+              <div class="section-header"><i class="fas fa-file-alt"></i> Resume Templates</div>
+              
+              <div class="resume-type-card">
+                <div class="resume-type-title"><i class="fas fa-code"></i> Technology Companies</div>
+                <div class="resume-type-desc">Optimized for Google, Microsoft, Amazon</div>
+                <button class="btn-view">View Details</button>
+              </div>
+              
+              <div class="resume-type-card">
+                <div class="resume-type-title"><i class="fas fa-chart-line"></i> Finance & Consulting</div>
+                <div class="resume-type-desc">Tailored for Goldman Sachs, McKinsey, BCG</div>
+                <button class="btn-view">View Details</button>
+              </div>
+              
+              <div class="resume-type-card">
+                <div class="resume-type-title"><i class="fas fa-graduation-cap"></i> Internship Programs</div>
+                <div class="resume-type-desc">For summer internship and entry-level roles</div>
+                <button class="btn-view">View Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Resume Page -->
+    <div class="page-mockup">
+      <div class="mockup-label"><i class="fas fa-plus-circle"></i> CREATE RESUME</div>
+      <div class="phone-frame">
+        <div class="status-bar"><span>9:41</span> <span>●●●●●</span></div>
+        <div class="form-screen">
+          <div class="form-header">Create New Resume</div>
+          
+          <div class="form-content scrollable">
+            <div class="form-section">
+              <label class="form-label">Resume Type <span class="required-mark">*</span></label>
+              <select class="input-field">
+                <option>Select Resume Type</option>
+                <option>Technology Companies</option>
+                <option>Finance & Consulting</option>
+                <option>Internship Programs</option>
+              </select>
+            </div>
+            
+            <div class="form-section">
+              <label class="form-label">Full Name <span class="required-mark">*</span></label>
+              <input type="text" class="input-field" placeholder="Enter your full name" />
+            </div>
+            
+            <div class="form-section">
+              <label class="form-label">Email Address <span class="required-mark">*</span></label>
+              <input type="email" class="input-field" placeholder="your.email@iiitg.ac.in" />
+            </div>
+            
+            <div class="form-section">
+              <label class="form-label">Phone Number <span class="required-mark">*</span></label>
+              <input type="tel" class="input-field" placeholder="+91 98765 43210" />
+            </div>
+            
+            <div class="form-section">
+              <label class="form-label">Technical Skills <span class="required-mark">*</span></label>
+              <textarea class="textarea-field" placeholder="Python, Java, Machine Learning, Web Development, etc."></textarea>
+            </div>
+            
+            <div class="form-section">
+              <label class="form-label">Work Experience & Projects</label>
+              <textarea class="textarea-field" placeholder="Describe your internships, projects, and relevant experience"></textarea>
+            </div>
+            
+            <div class="form-section">
+              <label class="form-label">Enable for Job Roles</label>
+              <div class="checkbox-group">
+                <input type="checkbox" id="tech-roles" checked />
+                <label for="tech-roles">Technology Companies</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="finance-roles" />
+                <label for="finance-roles">Finance & Consulting</label>
+              </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="intern-roles" />
+                <label for="intern-roles">Internship Programs</label>
+              </div>
+            </div>
+            
+            <button class="btn-submit"><i class="fas fa-save"></i> Create & Save Resume</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

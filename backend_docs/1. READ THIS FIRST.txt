@@ -1,0 +1,5 @@
+Complete 
+*app/storage folder
+*test folder
+
+ Is vibe coded for cloudflare R2, I don't know about it

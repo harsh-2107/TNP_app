@@ -1,0 +1,27 @@
+# FastAPI & Web Framework
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+python-multipart>=0.0.12
+
+# Storage & Cloudflare R2 / AWS S3
+boto3>=1.35.0
+
+# Database & Supabase
+supabase>=2.8.0
+postgrest>=0.16.0
+
+# Settings & Validation
+pydantic>=2.8.0
+pydantic-settings>=2.5.0
+
+# LLM & AI Agents (Job Description Parser)
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-openai>=0.2.0
+langgraph>=0.2.0
+
+# Testing & Quality
+pytest>=8.3.0
+pytest-asyncio>=0.24.0
+httpx>=0.27.0
+moto[s3]>=5.0.0

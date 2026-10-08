@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "396692134214",
+    "project_id": "e-cell-app-96672",
+    "storage_bucket": "e-cell-app-96672.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396692134214:android:be089cd483e23578032d47",
+        "android_client_info": {
+          "package_name": "com.place_row.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "966620190898-d9f1a5q8666lp1mllab2cr68bb8qd63i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.place_row.android",
+            "certificate_hash": "C7:68:76:6F:F6:6A:EE:D5:B9:9A:8A:16:3D:82:C8:2F:1A:2D:0B:91"
+          }
+        },
+        {
+          "client_id": "966620190898-7e9lpss1b2rrm920tqjrmkcm0ptcmg3i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpQKk6mRZEmHalXFOtaxPf3VpPe5PJ9FA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

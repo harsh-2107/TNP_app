@@ -1,0 +1,11 @@
+student_id,name,gender,branch,batch,cgpa,tenth_percentage,twelfth_percentage,backlogs,education_gaps,certifications,hackathons_won,leetcode_rating,github_commits,has_passport,is_pwd,is_hosteller,specialization,skills
+BT26CSE001,Aarav Patel,Male,CSE,2026,8.5,92.5,88.0,0,0,3,1,1650,240,true,false,true,Artificial Intelligence,"Python, React, Node.js"
+BT26ECE002,Priya Sharma,Female,ECE,2026,9.1,95.0,91.2,0,0,5,2,1800,450,true,false,false,VLSI Design,"C++, Verilog, MATLAB"
+BT26CSA003,Rahul Kumar,Male,CSA,2026,7.2,85.0,80.5,1,1,1,0,1200,50,false,false,true,Robotics,"SolidWorks, AutoCAD"
+BT26CSE004,Neha Gupta,Female,CSE,2026,8.8,94.0,90.0,0,0,4,1,1700,320,true,false,false,Cybersecurity,"Java, Go, Docker"
+BT27CSD005,Vikram Singh,Male,CSD,2027,6.5,78.0,75.0,2,0,0,0,1100,20,false,true,true,Software Engineering,"HTML, CSS, JavaScript"
+BT27ECE006,Ananya Desai,Female,ECE,2027,9.5,98.0,96.5,0,0,6,3,1950,600,true,false,true,Embedded Systems,"C, Rust, RTOS"
+BT26CSE007,Rohan Joshi,Male,CSE,2026,7.8,88.0,84.0,0,2,2,0,1400,150,true,false,false,Data Science,"Python, SQL, Pandas"
+BT26CSD008,Kriti Verma,Female,CSD,2026,8.2,90.0,86.0,0,0,3,1,1550,210,false,false,true,Cloud Computing,"AWS, Terraform, Python"
+BT27CSH009,Aditya Iyer,Male,CSH,2027,8.0,89.5,85.5,0,0,2,0,1300,80,true,false,false,Thermal Engineering,"ANSYS, C++"
+BT27CSE010,Pooja Reddy,Female,CSE,2027,9.3,96.0,94.0,0,0,5,2,1850,500,true,false,true,Machine Learning,"Python, TensorFlow, PyTorch"
